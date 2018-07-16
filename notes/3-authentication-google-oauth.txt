@@ -1,0 +1,87 @@
+---- INTRODUCTION: GOOGLE OAUTH ----
+
+• The OAuth Flow: User Authentication.
+    
+    1. (C)  User click 'Login'.
+        - Direct to localhost:5000/auth/google
+    
+    2. (S) Forward user's request to Google.
+        - google.com/auth?addId=123
+
+    3. (G) Ask user if they grant permission.
+
+    4. (G) User grants permission.
+        - Direct to localhost:5000/auth/google/callback?code=456
+
+    5. (S) Put user on hold, take the 'code' from the URL.
+
+    6. (S) Send request to google with  'code' included.
+
+    7. (S) Google sees 'code' in URL, replies with details about this user.
+
+    8. (S) Get user details, create a new record in database.
+
+    9. (S) Set user ID in cookie for this user.
+        - Kick user back to localhost:3000
+    
+    10. (C) Logged in!
+
+    11. (C) If user need some resources from the API.
+        - Cookie automatically included.
+    
+    12. (S) This request has a cookie with user id equal to 123.
+
+• Passport JS:
+
+    • Passport JS will be automating:
+        1. (S) Forward user's request to Google.
+        - google.com/auth?addId=123
+
+        2. (G) Ask user if they grant permission.
+
+        3. (G) User grants permission.
+        - Direct to localhost:5000/auth/google/callback?code=456
+
+        4. (S) Put user on hold, take the 'code' from the URL.
+
+        5. (S) Send request to google with  'code' included.
+
+    • Complaints regarding Passport JS:
+        
+        1. It automates vast variety of OAuth Flow but not the entire thing.
+
+        2. When one is using Passport, the programmer has to install at least two librabries.
+
+    • Passport Library Components:
+        
+        1. passport:
+            - General helper for handling auth in Express apps.
+
+        2. passport strategy:
+            - Helper for authenticating with one very specific method (email/password, Google, Facebook, etc).
+            - For multiple mode of Logins one has to install multiple passport strategy and combine them in one.
+
+
+• Google OAuth SignUp:
+    
+    1. console.developer.google.com
+    2. Create a new project.
+    3. Select the new project.
+        i. Enable OAuth API.
+            - Google +
+        ii. Create API credentials. 
+            - OAuth client Id.
+        iii. Configure consent screen.
+        iv. Select application type: Web application
+            - Authorised JS origin: http://localhost:5000
+
+            - Authorised redirect URLs: http://localhost:5000/*
+        v. OAuth client:
+            • client ID
+            • client secret
+
+
+• Securing API Keys:
+    1. clientID: Public token
+    2. clientSecret: Private token
+    

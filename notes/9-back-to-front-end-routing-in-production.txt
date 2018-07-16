@@ -1,0 +1,25 @@
+• Server in production & development?
+    -Understands difference between react & express rutes in production env.
+        - index.js
+• Build on client side.
+    • Option 1: Not Recomended
+        - Build client project
+        - Commit built project
+        - Push to Heroku
+    • Option 2: Not Good
+        - Push to Heroku
+        - Tell Heroku to install 'all' dependencies for client project
+        - Heroku builds client project
+    • Option 3: Over Kill
+        - Push to CI (third party server)(Continous Integration server)(CiecleCI)
+        - Run tests and stuff
+        - CI build and commits client
+        - CI pushes build to Heroku
+
+• Using Heroku to Deploy react
+    - Commit files
+    - Push to Heroku
+    - Heroku installs server dependencies
+    - Heroku runs 'heroku-postbuild'
+    - We tell Heroku to install client client dependencies
+    - We tell Heroku to run 'npm run build'

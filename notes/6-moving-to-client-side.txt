@@ -1,0 +1,38 @@
+---- MOVING TO THE CLIENT SIDE ----
+
+• STEPS:
+    - Install create-react-app globally
+    - Create a react project in server directory: client
+        - This app has its own builtin server.
+
+• The reason we will be using second server for react side of the application is:
+    - Express server serves json data & works with data using REST APIs.
+    - React server takes component files and build them using webpack & babel and deploy a single bundle.js into browser.
+
+• Steps to Run Client & Server together:
+    - using 'concurrently' package that helps runs two separate server concurrently.
+    - install concurrently on server.
+
+• Routing between Back-End server & Front-End server:
+    - In Production create-react-app does not exists, when app is deployed to Herkoku.
+    • NOTE: Before Deployment
+        - Build our react project.
+        • create-react-app will take js files and run babel & webpack and save final file in public directory.
+        - git commit
+        • When user comes to application running on Heroku:
+            - Node/Express API will be running on server.
+            - public dir will send bundle.js
+        - Deploy app on Heroku
+
+---- NOTE ----
+• Just so I remember, the diffrence between having two server in this project and bookShop project is that:
+    - In bookShop project there are two servers, one for providing REST APIs and one For Database.
+    - In this project we have two server for development env only, one for react development and other for MongoDB & REST APIs. Because in production only one server will run and react will send a single bundle.js file for UI.
+---- // ----
+
+---- THE SERVER ----
+
+• Using proxy to send cookies from react server to Node server on different port, in development.
+
+• When a browser makes req from one domain to a different domain, that is CORS req.
+

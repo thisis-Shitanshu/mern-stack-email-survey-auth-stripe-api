@@ -1,0 +1,7 @@
+• Dashboard Component.
+
+• To work with materialise icon one needs to add font-library link to root html.
+
+• Redux-Form:
+    - Automate Redux process for a form.
+    - formReducer is managed entirely by ReduxForm, it records all the values from our form automatically.

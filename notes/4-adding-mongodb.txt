@@ -1,0 +1,82 @@
+---- SERVER STRUCTURE REFACTOR ----
+
+• server {
+    • config {
+        - Protected API keys and settings
+    }
+    • routes {
+        - All route handlers, grouped by purpose
+    }
+    • services {
+        - Helper modules and business logic.
+    }
+    • index.js
+}
+
+---- THEORY OF AUTHENTICATION ----
+
+• HTTP is Stateless.
+    - Users needs token to let the server identify the user on follow up request.
+
+• Cookies based authentication:
+    - Sending a cookie in the header of first response to a Login request from server.
+    - Using the token in the Cookie on follow up requests from the browser to authenticate the user.
+
+• OAuth Flow:
+    - Unlike Email/Password login, User Sign up using google profile.
+    - Sign out
+    - Login using Google profile.
+
+    • Developer need to find some unique identifying token in the user's Google profile. That is consistent between logins. To decide if the user is the same.
+        - Google id
+
+---- INTRODUCTION TO MONGODB ----
+
+• MongoDB: Contains Collection which contains many records(object).
+
+• Mongoose:
+    - Model Class: Represents an entire Collection.
+    - Model Instances: JS object that represents a single record in the collection.
+
+---- SETTING UP MONGODB ----
+
+• Setting up MongoDB online: mlab
+    1. Login mLab
+    • Create New DB
+        - Free Sandbox
+        - DB Name: emaily-dev
+    • Database: emaily-dev
+        - Add database user
+            - Database username: name
+    2. Connecting Mongoose to MongoDB
+        • install Mongoose.
+        • Connect MongoDB Driver using URI in Mongoose.
+    3. Use Mongoose to create a new collection in MongoDB called 'users'.
+        • Collections are created by making a 'model class'.
+        - When user signs in, save new record to the 'users' collection.
+
+• Workflow with cookies:
+    1. Request: 
+        a. Request comes in.
+        b. [cookie process]
+        c. Request send to route handlers.
+    2. Cookie-Session:
+        • Extracts cookie data.
+    3. Passport:
+        • Pulls user id out of cookie data.
+    4. deserialize User:
+        • Function we write to turn user id into a user.
+    5. User model instance added to req object as 'req.user'
+
+• Middlewares: small functions that can be used to modify incoming requests in the app before sending it to the respected router handlers:
+    - Great place to implement logic to similar route handler.
+
+• cookie-session vs express-session:
+    - Diffrence is in how the data is stored.
+    • cookie-session: 
+        - Cookie is the session.
+        - small in size. (~14KB)
+    • express-session:
+        - Cookie references a session.
+        - Takes session ID, look up all relevant info from a 'session store'-can hold arbitraray amounts of info.
+        - large in size.

@@ -1,0 +1,74 @@
+﻿---- APPLICATION ARCHITECTURE ----
+
+• Tech Stack & Communication:
+    
+    • React App to the Browser UI.
+
+    • React App & Express Server will using 'HTTP Request' to communicate by passing JSON object.
+
+    • Express/Node API to communicate between UI & DB, using logic.
+    
+    • MongoDB to store information. 
+
+
+---- RELATIONSHIP BETWEEN NODE AND EXPRESS ----
+
+• Node:
+    Javascript runtime used to execute code outside of the browser.
+
+• Express:
+    Library that runs in the Node runtime.
+    Has helpers to make dealing with HTTP traffic easier.
+
+• Working:
+    
+    1. When user runs some server on local machine, the server will be listening to HTTP traffic (by maybe Browser) on a single individual PORT.
+
+    2. User will configure Node and express to listen to traffic that is trying to access a specific PORT.
+        • Node will be listening to traffic on a port.
+        • Node will pass the information to Express side:
+            - Express will look at the REQUEST and decide what chunk of code will "handle" or RESPOND to the REQUEST.
+            - User defines Route Handlers, to respond to incoming request.
+        • Node will recieve the RESPOND from express and return it to HTTP request.
+
+---- HEROKU PRE-DEPLOYMENT CHECKLIST ----
+
+1. Dynamic Port Binding:
+    • Heroku tells the user which port the app will use, so user need to make sure the ap listen to the port heroku tells.
+
+2. Specify Node Environment:
+    • The user needs to specific version of node, to Heroku.
+
+3. Specify start script:
+    • Instruct Heroku what command to run to start server running.
+
+4. Create .gitignore file:
+    • User shouldn't include dependencies, Heroku will do that.
+
+---- HEROKU DEPLOYMENT PROCESS ----
+
+• First Time Deployment:
+
+    1. Create Heroku account.
+    
+    2. Commit codebase to git:
+        • Heroku uses Git based Deployment workflow.
+    
+    3. Install Heroku CLI and Create Heroku App.
+        • heroku login
+        • heroku create
+            - Website URL
+            - Git repository to push local code too.
+            (Make sure you are commited.)
+
+    4. Deploy App with Git. (Optional)
+        • git remote add heroku https://git.heroku.com/still-forest-78996.git
+    5. Heroku Deploy project.
+        • git push heroku master
+        • heroku open
+        • heroku logs {for error.}
+
+• Subsequent Deployment:
+    1. Changes in Code Base.
+    2. Git Commit.
+heroku     3. Git Push to Heroku.

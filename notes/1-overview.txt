@@ -1,0 +1,77 @@
+---- APP OVERVIEW ----
+• Feedback collection application:
+    1. Someone uses startup owner's app/service
+    2. Startup owner wants feedback
+    3. Send customer an email requesting feedback
+    4. Get tabulation of results
+    5. Make app/service better with feedback
+
+---- APP USER FLOW ---- 
+
+1. User signs up via Google OAuth
+2. User pays for email credits via stripe
+3. User creats a new 'campaign'
+4. User enters list of emails to send survey to
+5. We send email to list of surveyees
+6. Surveyees click on link in email to provide feedback
+7. We tabulate feedback
+8. User can see report of all survey responses
+
+---- Tech Stack ----
+
+1. User signs up via Google OAuth:
+    • Express server: Back-end
+    • MongoDB: User information
+    • PassportJS: Handle OAuth & Authentication
+
+2. User pays for email credits via stripe:
+    • Stripe: Handle billing
+    • MongoDB: Record payment information
+
+3. User creats a new 'campaign':
+    • React
+    • Redux
+
+4. User enters list of emails to send survey to:
+    • React
+    • Redux
+    • Redux Form
+
+5. We send email to list of surveyees:
+    • Email Provider
+
+6. Surveyees click on link in email to provide feedback:
+    • Email Provider
+    • Express
+    • MongoDB
+
+7. We tabulate feedback:
+    • Mongo?
+
+8. User can see report of all survey responses:
+    • Mongo
+    • React
+    • Redux
+
+---- APP MOCKUPS ----
+
+• Screen 1: Logo, Login, Intro
+
+• Screen 2 (after Login):
+    1. Results of previous Campaign:
+        • Campaign name
+        • Feedback
+    2. Header:
+        • Add Credits & Current Credits Information.
+    3. Button to create & send a survey
+
+• Screen 3 (after Add Credits):
+    1. Form: To enter Credit Card information & pay money.
+
+• Screen 4 (after Create Survey Button):
+    1. Create Survey Form:
+        • Survey Title
+        • Subject Line
+        • Email Body
+        • Recipient List
+    2. Review Page: Before final submit.

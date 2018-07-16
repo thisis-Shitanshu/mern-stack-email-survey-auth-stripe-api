@@ -1,0 +1,33 @@
+---- HANDLING PAYMENTS ----
+• Billing Consideration: Rules of Billing
+    • We are bad at security
+        - Never accept raw credit card numbers
+        - Never store credit card numbers
+        - Always use an outside payment processor
+    • Billing is hard
+        - Possible to avoid monthly payment/mutiple plans?
+        - Fraud and chargebacks are a pain.
+
+• Stripe Billing Process:
+    - Add Credit.
+    - Call Stripe API and Render Stripe Form.
+    - Details from the form are directly send to the stripe API.
+    - Stripe sends back a token representing the charge.
+    - We send token to our API: calculate total.
+    - Our API confirms the charge was successful with Stripe.
+    - Add credits to user's account.
+
+• Developer step:
+    - Install react-stripe-checkout
+    - Working with API keys:
+        - Server: config/dir
+        - Client Side: Adding custome env variables.
+            • REACT_APP_*
+            • process.env.REACT_APP_
+            • .env in root
+    - Working with stripe checkout component
+        - Create new component to handle checkout component.
+            - Create a charge: npmjs.org & create a charge
+                - install stripe npm to handle token from client side action.
+        - Add new key to User model.
+        - Make No of credit visible.

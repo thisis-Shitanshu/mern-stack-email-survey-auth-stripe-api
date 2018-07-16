@@ -1,0 +1,117 @@
+---- DEVELOPING CLIENT SIDE ----
+
+• Async request: using 'then'
+// write a function to retrieve a blob of json
+// make an ajax request! Use the 'fetch' function. Default by ES16
+// https://rallycoding.herokuapp.com/api/music_albums
+
+function fetchAlbums() {
+    fetch('https://rallycoding.herokuapp.com/api/music_albums')
+        .then( res => res.json() )
+        .then( json => console.log(json));
+}
+
+fetchAlbums();
+
+• New ES17 syntax to work with promises: ASYNC AWAIT
+
+    - Find the code in the function that makes an Async req.
+
+    - put async key word in front of that function declaration. 
+
+    - Identify all the diffrent promises created inside that function.
+        - Add await keyword in front of those promises.
+    
+    - Assign promises values to an intermidiate value.
+
+const fetchAlbums = async () => {
+    const res = await fetch('https://rallycoding.herokuapp.com/api/music_albums')
+    const json = await res.json();
+    
+    console.log(json);
+}
+
+fetchAlbums();
+
+
+---- CLIENT REACT SETUP ----
+// React, React-Router, Redux
+
+• The root of the React app will be 'index.js'
+    - Contain initial bootup logic for react & redux side of the application.
+    - Data layer control.
+    - Redux
+• App.js, a component that's a rendering layer control.
+    - React Router
+
+• STRUCTURE:
+    • index {
+        • App {
+            • Landing
+            • Header 
+            • {
+                • Dashboard {
+                    • SurveyList {
+                        • SurveyItem
+                    }
+                }
+            }
+            • SurveyNew {
+                • SurveyField
+            }
+        }
+    }
+
+• REDUX:
+    - Redux library is responsible to hold all the state in the application.
+
+    • Working in this application:
+        - Inside index.js, we will create a Redux Store & render a Provider Tag.
+            • PROVIDER is a component that makes the store accessible to every component in the app and is provided by React-Redux.
+        - We will pass store to Provider Tag.
+        - To change the state we call Actions creator.
+        - Action creator dispath an action to all Reducers in the application.
+        - Those reducers are combined together by combine reducers call.
+        - That is use to update states.
+    
+    • Working of Redux:
+        - REACT COMPONENTS
+        - CALLS A: Action creator
+        - RETURNS A: Action
+        - SENT TO: Reducers
+        - UPDATES STATE IN: Store
+        - State is sent back to components, causing them to render.
+
+• React-Router:
+    - A route is a pairing, between the address the user is looking at and component that should be displayed on the screen at any given time.
+
+• STYLING:
+    - Materialize CSS is a CSS library. Easy to Setup.
+    - Material-UL is a JS library.
+
+• Webpack: already in create-react-app
+    - Bundle creator.
+    - It has loaders for js, css files.
+
+• User Authentication in React app:
+    1. React App Boots Up.
+    2. App component calls action creator.
+        - Action creator will make api req to back end.
+    3. Action Creator: fetchUser()
+        - use axios libraray to make an api call to express.
+        - Express will return an user or not.
+        - then use redux-thunk library to dispatch an action from Action Creator.
+    4. Action will go to Redux store:
+        - action will go to authReducer
+        - update a flag to identify login, the state.
+    5. Header will be updated.
+
+• Redux-Think has a role to break the responsibility of Action creator to return an Action.
+    1. React components.
+    2. Calls an: Action Creator.
+    3. Produces an: Action.
+    4. Pass that action to a Dispatch function.
+    5. Dispatch automatically sends the action to all the reducers in the store, causing them to instanly recalculate the app state.
+
+• NAVIGATION WITH REACT-ROUTER: LINK
+    - Navigate to a diffrent route render by React Router.

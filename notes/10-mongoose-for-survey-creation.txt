@@ -1,0 +1,36 @@
+• When user creates a survey:
+    - User creates a survey with simple yes/no question.
+    - Express server creates an email template.
+    - Use 3rd party email provider to send email.
+    - End user click yes or no.
+    - Email provider notes response.
+    - Email provider sends note to our Express server.
+    - Express server records feedback in Mongo.
+
+• Routes:
+    - GET/api/survey: Return a list of survey created by the current_user
+    - POST/api/survey: Create a new survey & send a big email
+        - title
+        - subject
+        - body
+        - recipients: Comma-separated list of email addresses
+    - POST/api/surveys/webhooks: Record feedback from a user.
+
+• Size of one Document can only be ~ 4MB in Mongo.
+
+• Survey Route Handler:
+    - Createa new Survey instance
+    - Attempt to create and send email
+    - Email send successfully?
+    - Save survey!
+    - Survey handler complete
+
+• Email provider: sendgrid.com
+    - We tell Sendgrid to send an email
+    - Sendgrid scans the email, replaces every link with their own special one: The links they inject into the email contains a token that identifies the user!
+    - User clicks a link.
+    - Send knows who clicked it!
+    - Webhook:
+        - User send to destination.
+        - Sendgrid sends data to our server.
+

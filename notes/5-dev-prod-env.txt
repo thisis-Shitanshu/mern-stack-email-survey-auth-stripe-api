@@ -1,0 +1,36 @@
+---- DEVELOPMENT VS PRODUCTION ENVIRONMENT ----
+
+• Working with keys: Have two set of keys, one for development env and one for production keys.
+    - Production keys can be kept remotely on Heroku servers & Dev keys can be kept on development machines.
+    - Two seperate databases, Production (not to be messed around) & Dev (modifyable).
+
+• Setup new Production env: (For more security use different account.)
+    1. Set up new Production DB & User.
+    2. Set up new Production Google API.
+        - New Project: emaily-prod
+        - Enable API: Google+
+        - Create Credentials: OAuth client ID
+        - Configure consent screen.
+        - Set up Redirections in accordance with Heroku URL.
+    3. Set-up keys.js file
+        - Commit keys.js
+        • In config folder:
+            - dev.js  (DON'T COMMIT)
+            - keys.js: decide credentials on the bases of env. ( COMMIT )
+            - prod.js ( DO COMMIT )
+        • When a server is deployed to Heroku, there is an existing env variable called NODE_ENV. This variable tells us weather we are running in production or dev env.
+        - Setup version control correctly.
+    4. Define all the environment variable on Heroku Server.
+        - Go to Heroku.Com
+        - Find the application for the app.
+        - Go to settings.
+        - Reveal Config variables.
+        - Set variables
+        - Hide variables
+
+• When using OAuth always use https.
+
+• Fixing Heroku proxy Issue:
+    - Using relative path causes 'https' to drop out of URL & revert back to http.
+    - Adding options to Google strategy:
+        • proxy: true
