@@ -1,6 +1,5 @@
 # Emaily
-
-## This is a practice project from Stephen Grider
+A simple application to create a survey compaign. Handles payment via Stripe API.
 
 ## TECH STACK: MERN with Redux
 1. User signs up via Google OAuth:
